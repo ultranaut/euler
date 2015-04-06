@@ -13,8 +13,10 @@ not exceed four million, find the sum of the even-valued terms.
 """
 def sum_even_fibonaccis(limit=4000000):
     low, high, total = 1, 1, 0
-    while high < limit:
+    while True:
         low, high = high, high + low
+        if high > limit:
+            break
         if high % 2 == 0:
             total += high
     return total
