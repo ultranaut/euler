@@ -7,5 +7,6 @@ public class Euler {
     ProblemSet problems = new ProblemSet();
 
     System.out.println("Problem 1: " + problems.problem001(3, 5, 1000));
+    System.out.println("Problem 2: " + problems.problem002(2, 4000000));
   }
 }
