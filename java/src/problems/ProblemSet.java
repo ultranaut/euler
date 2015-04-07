@@ -83,11 +83,22 @@ public class ProblemSet {
  */
 
   public Long problem003(long n) {
+    /*
+     * Problem 3: Largest prime factor
+     *
+     * The prime factors of 13195 are 5, 7, 13 and 29.
+     *
+     * What is the largest prime factor of the number 600851475143 ?
+     */
+
     PrimesGenerator primes = new PrimesGenerator();
     Long factor = 1L;
     while (n > 1) {
+      // get the next prime number
       factor = primes.next();
 
+      // if the factor is larger than the square root of n, then n is prime
+      // and we can just set factor to n
       if (factor > Math.sqrt(n)) {
         factor = n;
       }
@@ -118,26 +129,6 @@ public class ProblemSet {
     return (largestMultiple + step) * count / 2;
   }
 
-  /**
-   *
-   * @param n
-   * @return
-   */
-  public boolean isPrime(long n) {
-    if (n == 1) {
-      return false;
-    }
-    long i = 2;
-    long sqrt = (int)Math.sqrt(n);
-    while (i <= sqrt) {
-      if (n % i == 0) {
-        return false;
-      }
-      i++;
-    }
-    return true;
-  }
-
   class PrimesGenerator {
     public ArrayList<Long> primes = new ArrayList<Long>();
     private int i = 0;
@@ -153,21 +144,29 @@ public class ProblemSet {
         nextPrime = primes.get(this.i);
       }
       else {
-        Long candidate = this.primes.get(this.primes.size() - 1) + 2;
+        Long n = this.primes.get(this.primes.size() - 1) + 2;
         while (true) {
+          // assume that it's prime until proven otherwise
           boolean isPrime = true;
-          for (int j = 0; j < this.primes.size(); j++) {
-            if (candidate % this.primes.get(j) == 0) {
+          for (Long p: this.primes) {
+
+            // it's prime
+            if (p > Math.sqrt(n)) {
+              break;
+            }
+
+            // it's not prime
+            if (n % p == 0) {
               isPrime = false;
               break;
             }
           }
           if (isPrime) {
-            this.primes.add(candidate);
-            nextPrime = candidate;
+            this.primes.add(n);
+            nextPrime = n;
             break;
           }
-          candidate += 2;
+          n += 2;
         }
       }
       this.i++;
