@@ -13,6 +13,10 @@ public class PrimesGenerator {
   };
   private int i = 0;
 
+  public void reset() {
+    i = 0;
+  }
+
   public Long next() {
     Long nextPrime;
     if (this.i < PrimesGenerator.primes.size()) {
