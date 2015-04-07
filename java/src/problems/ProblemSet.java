@@ -1,5 +1,7 @@
 package problems;
 
+import java.util.ArrayList;
+
 public class ProblemSet {
   /**
    *
@@ -38,10 +40,10 @@ public class ProblemSet {
   }
 
   /**
-   * 
+   *
    * @param divisor
    * @param ceiling
-   * @return 
+   * @return
    */
   public int problem002(int divisor, int ceiling) {
     /*
@@ -74,6 +76,32 @@ public class ProblemSet {
     return sum;
   }
 
+/**
+ *
+ * @param n
+ * @return largest prime factor of n
+ */
+
+  public Long problem003(long n) {
+    PrimesGenerator primes = new PrimesGenerator();
+    Long factor = 1L;
+    while (n > 1) {
+      factor = primes.next();
+
+      if (factor > Math.sqrt(n)) {
+        factor = n;
+      }
+
+      while (n % factor == 0) {
+        n = n / factor;
+      }
+    }
+
+    return factor;
+  }
+
+
+
   /*
    * Utility functions
    */
@@ -90,4 +118,63 @@ public class ProblemSet {
     return (largestMultiple + step) * count / 2;
   }
 
+  /**
+   *
+   * @param n
+   * @return
+   */
+  public boolean isPrime(long n) {
+    if (n == 1) {
+      return false;
+    }
+    long i = 2;
+    long sqrt = (int)Math.sqrt(n);
+    while (i <= sqrt) {
+      if (n % i == 0) {
+        return false;
+      }
+      i++;
+    }
+    return true;
+  }
+
+  class PrimesGenerator {
+    public ArrayList<Long> primes = new ArrayList<Long>();
+    private int i = 0;
+
+    public PrimesGenerator() {
+      this.primes.add(2L);
+      this.primes.add(3L);
+    }
+
+    public Long next() {
+      Long nextPrime;
+      if (this.i < this.primes.size()) {
+        nextPrime = primes.get(this.i);
+      }
+      else {
+        Long candidate = this.primes.get(this.primes.size() - 1) + 2;
+        while (true) {
+          boolean isPrime = true;
+          for (int j = 0; j < this.primes.size(); j++) {
+            if (candidate % this.primes.get(j) == 0) {
+              isPrime = false;
+              break;
+            }
+          }
+          if (isPrime) {
+            this.primes.add(candidate);
+            nextPrime = candidate;
+            break;
+          }
+          candidate += 2;
+        }
+      }
+      this.i++;
+      return nextPrime;
+    }
+  }
+
 }
+
+
