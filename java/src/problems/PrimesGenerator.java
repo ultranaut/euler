@@ -2,26 +2,28 @@ package problems;
 
 import java.util.ArrayList;
 
-public class PrimesGenerator {
-  public ArrayList<Long> primes = new ArrayList<Long>();
-  private int i = 0;
 
-  public PrimesGenerator() {
-    this.primes.add(2L);
-    this.primes.add(3L);
-  }
+public class PrimesGenerator {
+  @SuppressWarnings("serial")
+  private static ArrayList<Long> primes = new ArrayList<Long>() {
+    {
+      add(2L);
+      add(3L);
+    }
+  };
+  private int i = 0;
 
   public Long next() {
     Long nextPrime;
-    if (this.i < this.primes.size()) {
+    if (this.i < PrimesGenerator.primes.size()) {
       nextPrime = primes.get(this.i);
     }
     else {
-      Long n = this.primes.get(this.primes.size() - 1) + 2;
+      Long n = PrimesGenerator.primes.get(PrimesGenerator.primes.size() - 1) + 2;
       while (true) {
         // assume that it's prime until proven otherwise
         boolean isPrime = true;
-        for (Long p: this.primes) {
+        for (Long p: PrimesGenerator.primes) {
 
           // it's prime
           if (p > Math.sqrt(n)) {
@@ -35,7 +37,7 @@ public class PrimesGenerator {
           }
         }
         if (isPrime) {
-          this.primes.add(n);
+          PrimesGenerator.primes.add(n);
           nextPrime = n;
           break;
         }
