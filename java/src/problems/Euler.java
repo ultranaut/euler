@@ -11,5 +11,6 @@ public class Euler {
     System.out.println("Problem 3: " + problems.problem003(600851475143L));
     System.out.println("Problem 4: " + "---");
     System.out.println("Problem 5: " + problems.problem005(20));
+    System.out.println("Problem 6: " + problems.problem006(100));
   }
 }
