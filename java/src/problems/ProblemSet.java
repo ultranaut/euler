@@ -189,14 +189,27 @@ public class ProblemSet {
      * Find the difference between the sum of the squares of the first
      * one hundred natural numbers and the square of the sum.
      */
-    long sumOfSquares = 0;
-    long squareOfSum = 0;
-    for (int i = 1; i <= n; i++) {
-      squareOfSum += i;
-      sumOfSquares += Math.pow(i, 2);
-    }
 
-    return squareOfSum * squareOfSum - sumOfSquares;
+    long sumOfSquares = 0;
+    long sumOfAll = 0;
+    long squareOfSum = 0;
+
+    /*  // naive approach, O(n) runtime...
+    for (int i = 1; i <= n; i++) {
+      sumOfAll += i;
+      sumOfSquares += (long)Math.pow(i, 2);
+    }
+    */
+
+    // ...however, both sums can be directly computed, O(1) runtime:
+    sumOfAll = n * (n + 1) / 2;
+    sumOfSquares = n*(n + 1)*(2*n + 1) / 6;
+
+    squareOfSum = (long)Math.pow(sumOfAll, 2);
+
+
+    return squareOfSum - sumOfSquares;
+
   }
 
 
