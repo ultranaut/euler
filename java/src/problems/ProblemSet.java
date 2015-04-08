@@ -109,6 +109,66 @@ public class ProblemSet {
     return factor;
   }
 
+  public long problem005(int n) {
+    /*
+     * Problem 5: Smallest multiple
+     *
+     * 2520 is the smallest number that can be divided by each of the
+     * numbers from 1 to 10 without any remainder.
+     *
+     * What is the smallest positive number that is evenly divisible by
+     * all of the numbers from 1 to 20?
+     */
+    PrimesGenerator primes = new PrimesGenerator();
+
+    long product = 1;
+
+    while (true) {
+      long p = primes.next();
+      if (p > n) {
+        break;
+      }
+
+
+      /*
+      * First pass: for each of the primes less than or equal to n, see
+      * which of our numbers has the highest power of two as a factor,
+      * and multiply the running product total by that amount
+      */
+
+      // high-water mark of the exponent for our current prime
+      int exp = 0;
+
+      // cycle through each of the multiples of p up to n and check how
+      // many times p will go into it
+      for (long number = p; number < n+1; number += p) {
+        int count = 0;
+
+        while (number % Math.pow(p, count+1) == 0) {
+          count++;
+        }
+        if (count > exp) {
+          exp = count;
+        }
+      }
+
+
+      /*
+      * second go: way simpler, but only works if all of the numbers up
+      * to n are used, i.e. it wouldn't work with some sub-set of
+      * numbers, or an arbitrary set of numbers
+      */
+      /*
+      int exp = (int)(Math.log(n) / Math.log(p));
+      */
+
+
+      product *= Math.pow(p, exp);
+    }
+
+    return product;
+  }
+
 
 
   /*
