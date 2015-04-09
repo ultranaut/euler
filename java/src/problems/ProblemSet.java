@@ -212,7 +212,7 @@ public class ProblemSet {
 
   }
 
-  public long problem008(int[] digits) {
+  public long problem008(String digits) {
     /*
      * Problem 8: Largest product in a series
      *
@@ -243,7 +243,7 @@ public class ProblemSet {
      * Find the thirteen adjacent digits in the 1000-digit number that
      * have the greatest product. What is the value of this product?
      */
-    int digitCount = digits.length;
+    int digitCount = digits.length();
 
     long max = 0;
 
@@ -252,7 +252,11 @@ public class ProblemSet {
     long product = 1;
 
     while (hi < digitCount) {
-      product = getProduct(digits, lo, hi);
+      product = 1;
+      for (int i = lo; i < hi; i++) {
+        product *= Character.getNumericValue(digits.charAt(i));
+      }
+
       if (product != 0) {
         if (product > max) {
           max = product;
@@ -260,7 +264,7 @@ public class ProblemSet {
         lo++;
         hi++;
       } else {
-        while (digits[lo] != 0) {
+        while (Character.getNumericValue(digits.charAt(lo)) != 0) {
           lo++;
           hi++;
         }
@@ -269,14 +273,6 @@ public class ProblemSet {
       }
     }
     return max;
-  }
-
-  public long getProduct(int[] list, int lo, int hi) {
-    long product = 1;
-    for (int i = lo; i < hi; i++) {
-      product *= list[i];
-    }
-    return product;
   }
 
 
