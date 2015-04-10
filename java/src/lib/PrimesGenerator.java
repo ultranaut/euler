@@ -1,4 +1,4 @@
-package problems;
+package lib;
 
 import java.util.ArrayList;
 
