@@ -51,9 +51,16 @@ public class Euler {
     System.out.println("\n  Answer: " + p6.solve());
 
     printRule();
+    
+    /* --- Problem 7 ----------------------------------------------- */
+    Problem7 p7 = new Problem7();
+    System.out.println(p7);
+    System.out.println("\n  Answer: " + p7.solve());
+
+    printRule();
 
     /* --- Problem 8 ----------------------------------------------- */
-    Problem8 p8 = new Problem8(22);
+    Problem8 p8 = new Problem8();
     System.out.println(p8);
     System.out.println("\n  Answer: " + p8.solve());
 
