@@ -66,9 +66,10 @@ public class Problem8 extends EulerProblem {
 
   // instance properties
   String digits;
+  int adjacent;
 
   public Problem8() {
-    this(
+    this(62, 
         "73167176531330624919225119674426574742355349194934"
       + "96983520312774506326239578318016984801869478851843"
       + "85861560789112949495459501737958331952853208805511"
@@ -91,7 +92,8 @@ public class Problem8 extends EulerProblem {
       + "71636269561882670428252483600823257530420752963450");
   }
 
-  public Problem8(String digits) {
+  public Problem8(int adjacent, String digits) {
+    this.adjacent = adjacent;
     this.digits = digits;
   }
 
@@ -107,7 +109,7 @@ public class Problem8 extends EulerProblem {
     long max = 0;
 
     int lo = 0;
-    int hi = 13;
+    int hi = adjacent;
     long product = 1;
 
     // TODO make this a little smarter, we don't need to do the
