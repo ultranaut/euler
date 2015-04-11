@@ -27,9 +27,9 @@ public class Problem6 extends EulerProblem {
   public static String title = "Sum square difference";
   public static String instructions =
       "The sum of the squares of the first ten natural numbers is,\n\n" +
-  
+
       "    1^2 + 2^2 + ... + 10^2 = 385\n\n" +
-  
+
       "The square of the sum of the first ten natural numbers is,\n\n" +
 
       "    (1 + 2 + ... + 10)^2 = 55^2 = 3025\n\n" +
@@ -40,19 +40,19 @@ public class Problem6 extends EulerProblem {
       "    3025 − 385 = 2640\n\n" +
 
       "Find the difference between the sum of the squares of the first\n" +
-      "one hundred natural numbers and the square of the sum.";  
-  
+      "one hundred natural numbers and the square of the sum.";
+
   // instance properties
   int n;
 
   public Problem6() {
     this(100);
   }
-  
+
   public Problem6(int n) {
     this.n = n;
   }
-  
+
   @Override
   public String toString() {
     return this.toString(problemNumber, title, instructions);
@@ -64,9 +64,9 @@ public class Problem6 extends EulerProblem {
     long sumOfAll = 0;
     long squareOfSum = 0;
 
-    /* 
+    /*
      * brute force approach, O(n) runtime...
-     * 
+     *
      *   for (int i = 1; i <= n; i++) {
      *     sumOfAll += i;
      *     sumOfSquares += (long)Math.pow(i, 2);
