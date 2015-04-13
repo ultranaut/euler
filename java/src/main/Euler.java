@@ -3,15 +3,8 @@ package main;
 import java.math.BigInteger;
 import java.util.BitSet;
 
-import lib.SieveOfEratosthenes;
-import problems.Problem1;
-import problems.Problem11;
-import problems.Problem2;
-import problems.Problem3;
-import problems.Problem5;
-import problems.Problem6;
-import problems.Problem7;
-import problems.Problem8;
+import lib.*;
+import problems.*;
 
 public class Euler {
 
@@ -149,5 +142,20 @@ public class Euler {
 
     printRule();
 
+    /* --- Problem 14 ----------------------------------------------- */
+    System.out.println("Problem 14");
+    CollatzSequence collatz = new CollatzSequence();
+    int max = 1;
+    int starter = 1;
+    for (i = 2; i < 1000000; i++) {
+      int steps = collatz.run(i);
+      if (steps > max) {
+        max = steps;
+        starter = i;
+      }
+    }
+    System.out.println(starter + " => " + max);
+
+    printRule();
   }
 }
