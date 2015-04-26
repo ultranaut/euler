@@ -32,13 +32,22 @@ var coinCombinations = (function () {
     if (coins.length === 0) {
       return 0;
     }
-    // can't make a negative target
+    // can't hit a negative target
     if (target < 0) {
       return 0;
     }
     // target hit, add one to the count
     if (target === 0) {
       return 1;
+    }
+
+    /*
+     * if we only have one coin to use, there's no need to check it
+     * recursively. I thought at first this was essentially a micro-
+     * optimization, but it actually speeds things up substantially
+     */
+    if (coins.length === 1) {
+      return (target % coins[0] === 0) ? 1 : 0;
     }
 
     return total(target - coins[0], coins) + total(target, coins.slice(1));
