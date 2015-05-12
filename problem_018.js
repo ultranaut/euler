@@ -35,60 +35,58 @@
  * solved by brute force, and requires a clever method! ;o)
  */
 var Pyramid = function (values) {
-  this.values = values;
+  this.values = values.slice();
 };
 
 Pyramid.prototype.maxPath = function () {
+  /*
+   * keep track of what row and column we're in, starting from the
+   * second row
+   */
+  var row = 1,
+      col = 0,
+      rowMax = 2;
+
+  // make a copy of this.values
   var paths = this.values.slice();
+  // high water mark
+  var  maxPath = 0;
+
   for (var i = 1; i < paths.length; i++) {
-    for (var j = 0; j < paths[i].length; j++) {
-      if (j === 0) {
-        paths[i][j] += paths[i-1][0];
-      }
-      else if (j === paths[i].length - 1) {
-        paths[i][j] += paths[i-1][j-1];
-      }
-      else {
-        var maxParent = paths[i-1][j-1] > paths[i-1][j] ?
-                        paths[i-1][j-1] :
-                        paths[i-1][j];
-        paths[i][j] += maxParent;
-      }
+    var lParentValue = paths[i - (row+1)];
+    var rParentValue = paths[i - row];
+    var currentValue = paths[i];
+    var addedValue = 0;
+
+    // first item in the row
+    if (col === 0) {
+      addedValue = rParentValue;
     }
+    // last item in the row
+    else if (i === rowMax) {
+      addedValue = lParentValue;
+      row++;
+      rowMax += row + 1;
+      // so that when col is incremented it'll end up at 0
+      col = -1;
+    }
+    else {
+      addedValue = Math.max(lParentValue, rParentValue);
+    }
+
+    // set accumulated path value
+    paths[i] += addedValue;
+
+    // test high water mark
+    if (paths[i] > maxPath) {
+      maxPath = paths[i];
+    }
+
+    // move to next column
+    col++;
   }
-  return Math.max.apply(Math, paths[paths.length - 1]);
+  return maxPath;
 };
-
-// Pyramid.prototype.maxPath = function () {
-//   var row = 0,
-//       col = 0,
-//       rowMax = 0;
-//   //debug
-//   var out = '';
-
-//   for (var i = 0; i < this.values.length; i++) {
-//     out = row + ':' + col + ' - ' + this.values[i];
-
-//     // last item in the row
-//     if (i === rowMax) {
-//       console.log('  ', out, '=>');
-//       row++;
-//       rowMax += row + 1;
-//       console.log(rowMax);
-//       col = 0;
-//     }
-//     // first item in the row
-//     else if (col === 0) {
-//       console.log('<=', out);
-//       col++;
-//     }
-//     else {
-//       console.log('  ', out);
-//       col++;
-//     }
-//   }
-// };
-
 
 module.exports = Pyramid;
 
