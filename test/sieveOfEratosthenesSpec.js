@@ -4,18 +4,21 @@
 var expect = require('chai').expect;
 
 describe('Sieve of Eratosthenes', function () {
-  describe('#constructor', function () {
-    it('should return an array of `limit` length', function () {
-      var Sieve = require('../sieveOfEratosthenes.js');
+  describe('#pi()', function () {
+    var Sieve = require('../sieveOfEratosthenes.js');
+    var sieve;
 
-      var sieve = new Sieve(1000);
-      expect(sieve.sieve.length).to.equal(1000);
-
-      sieve = new Sieve(100000);
-      expect(sieve.sieve.length).to.equal(100000);
-
-      sieve = new Sieve(783);
-      expect(sieve.sieve.length).to.equal(783);
+    it('number of primes < 1e7 should equal 664,579', function () {
+      sieve = new Sieve(1e7);
+      expect(sieve.pi()).to.equal(664579);
+    });
+    it('number of primes < 1e5 should equal 9,592', function () {
+      sieve = new Sieve(1e5);
+      expect(sieve.pi()).to.equal(9592);
+    });
+    it('number of primes < 1e3 should equal 168', function () {
+      sieve = new Sieve(1e3);
+      expect(sieve.pi()).to.equal(168);
     });
   });
 });
