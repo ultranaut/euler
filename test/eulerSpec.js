@@ -7,7 +7,7 @@ var values = require('./euler.data');
 describe('Problem 18', function () {
   describe('maximum path sum', function () {
     it('should equal 1074', function () {
-      var Pyramid = require('../problem_067.js');
+      var Pyramid = require('../problem_067');
       var myPyramid = new Pyramid(values.p018);
 
       expect(myPyramid.maxPath()).to.equal(1074);
@@ -15,10 +15,21 @@ describe('Problem 18', function () {
   });
 });
 
+describe('Problem 33', function () {
+  describe('#getProduct', function () {
+    it('denominator should equal 100', function () {
+      var P033 = require('../problem_033');
+      var myProblem = new P033();
+
+      expect(myProblem.getProduct().denominator).to.equal(100);
+    });
+  });
+});
+
 describe('Problem 67', function () {
   describe('maximum path sum', function () {
     it('should equal 7273', function () {
-      var Pyramid = require('../problem_067.js');
+      var Pyramid = require('../problem_067');
       var myPyramid = new Pyramid(values.p067);
 
       expect(myPyramid.maxPath()).to.equal(7273);
