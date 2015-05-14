@@ -12,15 +12,18 @@ function find(el, list) {
     // bit shift halves the sum and floors it
     var idx = (minIdx + maxIdx) >> 1;
 
-    if (list[idx] === el) {
-      // make sure we get the *first* occurrence
-      while (list[idx-1] === el) {
-        idx--;
-      }
+    /*
+     * only return the index if it is indeed the first instance, i.e.
+     * the element preceding it is not also equal to el. We could just
+     * keep checking to the left here until we get the correct index,
+     * but that has a worst-case running time of O(n), e.g. if the
+     * entire first half of the array is all equal the element.
+     */
+    if (list[idx] === el && list[idx-1] !== el) {
       return idx;
     }
 
-    if (list[idx] > el) {
+    if (list[idx] >= el) {
       maxIdx = idx - 1;
     }
     else {
