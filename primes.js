@@ -8,21 +8,19 @@ var _sieve = [];
 var _list = [];
 
 function sift(max) {
-  _sieve = SoE.sift(max);
-  _list.length = 0;
-  for (var i = 0; i < _sieve.length; i++) {
-    if (_sieve[i] === true) {
-      _list.push(i);
+  if (_sieve.length < max + 1) {
+    _sieve = SoE.sift(max);
+    _list.length = 0;
+    for (var i = 0; i < _sieve.length; i++) {
+      if (_sieve[i] === true) {
+        _list.push(i);
+      }
     }
   }
-  return _sieve;
 }
 
 function pi(max) {
-  // enlarge sieve if necessary
-  if (max > _sieve.length+1) {
-    _sieve = sift(max);
-  }
+  sift(max);
   return subList(max, _list);
 }
 
@@ -30,9 +28,15 @@ function list(max) {
   return _list.slice(0, pi(max));
 }
 
+function sieve(max) {
+  sift(max);
+  return _sieve.slice(0, max+1);
+}
+
 var Primes = {
   pi: pi,
-  list: list
+  list: list,
+  sieve: sieve
 };
 
 module.exports = Primes;
