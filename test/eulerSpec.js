@@ -26,6 +26,29 @@ describe('Problem 33', function () {
   });
 });
 
+describe('Problem 35', function () {
+  var p035 = require('../problem_035');
+  it('rotate', function () {
+    expect(p035.rotate(123)).to.eql([]);
+    expect(p035.rotate(7391)).to.eql([1739, 3917, 7391, 9173]);
+  });
+
+  it('dedupe', function () {
+    var lista = [2, 2, 2, 2, 2, 2];
+    var listb = [2, 2, 2, 1];
+    expect(p035.dedupe([2,2,2,2])).to.eql([2]);
+    expect(p035.dedupe([1,2,2,3])).to.eql([1, 2, 3]);
+    expect(p035.dedupe([1,2,3])).to.eql([1, 2, 3]);
+  });
+
+  describe('Circular primes less than 1,000,000', function () {
+    it('should equal 55', function () {
+      expect(p035.circularPrimes(1000000)).to.equal(55);
+      expect(p035.circularPrimes(100)).to.equal(13);
+    });
+  });
+});
+
 describe('Problem 67', function () {
   describe('maximum path sum', function () {
     it('should equal 7273', function () {
