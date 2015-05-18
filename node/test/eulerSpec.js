@@ -4,6 +4,13 @@
 var expect = require('chai').expect;
 var values = require('./euler.data');
 
+describe('Problem 21', function () {
+  it('should equal 31,626', function () {
+    var p021 = require('../problem_021');
+    expect(p021.getAmicableNumbers(10000)).to.equal(31626);
+  });
+});
+
 describe('Problem 15', function () {
   var p015 = require('../problem_015');
   var nPr = p015.nPr;
