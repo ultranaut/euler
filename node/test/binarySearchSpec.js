@@ -3,7 +3,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var binarySearch = require('../binarySearch');
+var binarySearch = require('../lib/binarySearch');
 
 describe('binarySearch', function () {
   var list = [-3, -2, 2, 7, 7, 7, 11, 13, 17, 19];

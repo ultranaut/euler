@@ -1,7 +1,7 @@
 /* jshint node: true, esnext:true, mocha: true */
 
 var expect = require('chai').expect;
-var sieve = require('../sieveOfEratosthenes.js');
+var sieve = require('../lib/sieveOfEratosthenes.js');
 
 describe('Sieve of Eratosthenes', function () {
   it('sift', function () {

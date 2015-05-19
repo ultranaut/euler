@@ -11,7 +11,7 @@
  *
  * How many circular primes are there below one million?
  */
-var Primes = require('./primes');
+var Primes = require('./lib/primes');
 
 function rotate(n) {
   var rotations = [n];

@@ -2,7 +2,7 @@
 /* global describe, it, Pyramid */
 
 var expect = require('chai').expect;
-var Primes = require('../Primes.js');
+var Primes = require('../lib/primes');
 
 describe('Primes', function () {
   var count;
