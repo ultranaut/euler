@@ -1,5 +1,5 @@
 /* jshint node: true, esnext:true */
-/* global describe, it, Pyramid */
+/* global describe, it */
 
 var expect = require('chai').expect;
 var values = require('./euler.data');
@@ -47,6 +47,18 @@ describe('Problem 21', function () {
   it('should equal 31,626', function () {
     var p021 = require('../problem_021');
     expect(p021.getAmicableNumbers(10000)).to.equal(31626);
+  });
+});
+
+describe('Problem 22', function () {
+  describe('names scores', function () {
+    it('should equal 871198282', function () {
+      var p022 = require('../problem_022.js');
+      var nameList = values.p022;
+      var nameScores = p022(nameList);
+
+      expect(nameScores).to.equal(871198282);
+    });
   });
 });
 
@@ -104,26 +116,3 @@ describe('Problem 67', function () {
     });
   });
 });
-
-
-/*
-describe('Hand', function () {
-  describe('#addCard()', function () {
-    it('should organize dealt cards', function () {
-      var Hand = require('../problem_054.js');
-      var myHand = new Hand();
-      var cards = ['8C', 'TS', 'KC', '9H', '4S'];
-      for (var idx in cards) {
-        myHand.addCard(cards[idx]);
-      }
-
-      expect(myHand.cards).to.deep.equal({
-        S: [10, 4],
-        C: [8, 13],
-        H: [9],
-        D: []
-      });
-    });
-  });
-});
-*/
