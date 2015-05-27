@@ -43,6 +43,21 @@ describe('Problem 18', function () {
   });
 });
 
+describe('Problem 20', function () {
+  var p020 = require('../problem_020');
+  var sfd = p020.sumFactorialDigits;
+
+  it('sumFactorialDigits', function () {
+    expect(sfd(10)).to.equal(27);
+  });
+
+  describe('sum of the digits of 100!', function () {
+    it('should equal 648', function () {
+      expect(sfd(100)).to.equal(648);
+    });
+  });
+});
+
 describe('Problem 21', function () {
   it('should equal 31,626', function () {
     var p021 = require('../problem_021');
@@ -116,3 +131,20 @@ describe('Problem 67', function () {
     });
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
