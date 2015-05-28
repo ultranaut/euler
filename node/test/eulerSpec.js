@@ -77,6 +77,53 @@ describe('Problem 22', function () {
   });
 });
 
+describe('Problem 24', function () {
+  var p024 = require('../problem_024');
+  var getNthPermutation = p024.getNthPermutation;
+  var permutate = p024.permutate;
+
+  var tenDigits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  it('permutate', function () {
+    var p4 = permutate(['a', 'b', 'c', 'd']);
+    expect(p4).to.be.an('array');
+    expect(p4).to.have.length(24);
+    expect(p4[p4.length - 1]).to.deep.equal(['d', 'c', 'b', 'a']);
+  });
+  it('getNthPermutation', function () {
+    var els = ['a', 'b', 'c'];
+    var p1 = getNthPermutation(els, 1);
+    var p3 = getNthPermutation(els, 3);
+    var p6 = getNthPermutation(els, 6);
+    expect(p1).to.equal('abc');
+    // expect(p3).to.equal('bac');
+    expect(p6).to.equal('cba');
+
+  });
+
+  describe('the millionth lexicographic permutation of [0...9]', function () {
+    it('should be 2783915460', function () {
+      expect(getNthPermutation(tenDigits, 1e6)).to.equal('2783915460');
+    });
+  });
+});
+
+describe('Problem 25', function () {
+  var p025 = require('../problem_025');
+  var fi = p025.firstIndexOfLength;
+  it('firstIndexOfLength', function () {
+    expect(fi(2)).to.equal(7);
+    expect(fi(3)).to.equal(12);
+    expect(fi(8)).to.equal(36);
+    expect(fi(10)).to.equal(45);
+  });
+  describe('Index of first Fibonacci number of 1000 digits', function () {
+    it('should equal 4782', function () {
+      expect(fi(1000)).to.equal(4782);
+    });
+  });
+});
+
 describe('Problem 29', function () {
   it('should equal 9,183', function () {
     var p029 = require('../problem_029');
@@ -131,20 +178,3 @@ describe('Problem 67', function () {
     });
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
