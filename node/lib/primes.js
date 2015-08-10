@@ -33,10 +33,16 @@ function sieve(max) {
   return _sieve.slice(0, max+1);
 }
 
+function isPrime(n) {
+  sift(n);
+  return (_sieve[n] === true);
+}
+
 var Primes = {
   pi: pi,
   list: list,
-  sieve: sieve
+  sieve: sieve,
+  isPrime: isPrime
 };
 
 module.exports = Primes;

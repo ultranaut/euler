@@ -33,6 +33,12 @@ describe('Primes', function () {
     expect(lastElement).to.equal(99991);
   });
 
+  it('isPrime', function () {
+    expect(Primes.isPrime(6883)).to.equal(true);
+    expect(Primes.isPrime(1197)).to.equal(false);
+  });
+
+
   it('sieve', function () {
     sieve = Primes.sieve(1e7 + 100);
     expect(sieve).to.be.an('array');
