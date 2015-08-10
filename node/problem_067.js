@@ -23,6 +23,10 @@
  */
 
 // same problem as #18, just a larger dataset
-var Pyramid = require('./problem_018');
+var Pyramid = require('./lib/path-pyramid');
+var data = require('./data/problem_067');
 
-module.exports = Pyramid;
+module.exports = {
+  Pyramid: Pyramid,
+  data: data
+};

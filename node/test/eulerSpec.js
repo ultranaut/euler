@@ -35,8 +35,10 @@ describe('Problem 15', function () {
 describe('Problem 18', function () {
   describe('maximum path sum', function () {
     it('should equal 1074', function () {
-      var Pyramid = require('../problem_067');
-      var myPyramid = new Pyramid(values.p018);
+      var p18 = require('../problem_018');
+      var Pyramid = p18.Pyramid;
+      var values = p18.data.nodeValues;
+      var myPyramid = new Pyramid(values);
 
       expect(myPyramid.maxPath()).to.equal(1074);
     });
@@ -171,8 +173,10 @@ describe('Problem 35', function () {
 describe('Problem 67', function () {
   describe('maximum path sum', function () {
     it('should equal 7273', function () {
-      var Pyramid = require('../problem_067');
-      var myPyramid = new Pyramid(values.p067);
+      var p67 = require('../problem_067');
+      var Pyramid = p67.Pyramid;
+      var values = p67.data.nodeValues;
+      var myPyramid = new Pyramid(values);
 
       expect(myPyramid.maxPath()).to.equal(7273);
     });

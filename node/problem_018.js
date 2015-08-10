@@ -34,60 +34,11 @@
  * challenge with a triangle containing one-hundred rows; it cannot be
  * solved by brute force, and requires a clever method! ;o)
  */
-var Pyramid = function (values) {
-  this.values = values.slice();
+
+var Pyramid = require('./lib/path-pyramid');
+var data = require('./data/problem_018');
+
+module.exports = {
+  Pyramid: Pyramid,
+  data: data
 };
-
-Pyramid.prototype.maxPath = function () {
-  /*
-   * keep track of what row and column we're in, starting from the
-   * second row
-   */
-  var row = 1,
-      col = 0,
-      rowMax = 2;
-
-  // make a copy of this.values
-  var paths = this.values.slice();
-  // high water mark
-  var  maxPath = 0;
-
-  for (var i = 1; i < paths.length; i++) {
-    var lParentValue = paths[i - (row+1)];
-    var rParentValue = paths[i - row];
-    var currentValue = paths[i];
-    var addedValue = 0;
-
-    // first item in the row
-    if (col === 0) {
-      addedValue = rParentValue;
-    }
-    // last item in the row
-    else if (i === rowMax) {
-      addedValue = lParentValue;
-      row++;
-      rowMax += row + 1;
-      // so that when col is incremented it'll end up at 0
-      col = -1;
-    }
-    else {
-      addedValue = Math.max(lParentValue, rParentValue);
-    }
-
-    // set accumulated path value
-    paths[i] += addedValue;
-
-    // test high water mark
-    if (paths[i] > maxPath) {
-      maxPath = paths[i];
-    }
-
-    // move to next column
-    col++;
-  }
-  return maxPath;
-};
-
-module.exports = Pyramid;
-
-
