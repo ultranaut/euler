@@ -45,6 +45,15 @@ describe('Problem 18', function () {
   });
 });
 
+describe('Problem 19', function () {
+  describe('count sundays', function () {
+    it('should equal 171', function () {
+      var p19 = require('../problem_019');
+      expect(p19.countSundays(1901, 2001)).to.equal(171);
+    });
+  });
+});
+
 describe('Problem 20', function () {
   var p020 = require('../problem_020');
   var sfd = p020.sumFactorialDigits;
