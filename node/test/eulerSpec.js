@@ -145,6 +145,20 @@ describe('Problem 29', function () {
   });
 });
 
+describe('Problem 30', function () {
+  var p030 = require('../problem_030');
+  describe('Sum of fourth powers', function () {
+    it('should equal 19316', function () {
+      expect(p030.digitPowers(4)).to.equal(19316);
+    });
+  });
+  describe('Sum of fifth powers', function () {
+    it('should equal 443839', function () {
+      expect(p030.digitPowers(5)).to.equal(443839);
+    });
+  });
+});
+
 describe('Problem 33', function () {
   describe('#getProduct', function () {
     it('denominator should equal 100', function () {
