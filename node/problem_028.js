@@ -32,46 +32,16 @@
  *    4n^2 - 6(n - 1)
  *
  * Since the sum of the diagonals is the sum of the four corners (as
- * given above) plus the sum of the diagonals of the n-1 spiral, the
+ * given above) plus the sum of the diagonals of the n-2 spiral, the
  * answer can be done recursively
  *
  */
-var sumNumberSpiralDiagonalsRecursive = function (n) {
-  // can't have a spiral of an even number
-  if (n % 2 === 0) {
-    return -1;
+const spiralSum = (n) => {
+  if (n < 2) {
+    return n;
   }
-  if (n === 1) {
-    return 1;
-  }
-  var sumOfCorners = 2 * (2*n*n - 3*n + 3);
-  return sumOfCorners + sumNumberSpiralDiagonalsRecursive(n - 2);
+  const cornerSum = 4 * (n * n) - 6 * (n - 1);
+  return cornerSum + spiralSum(n - 2);
 };
 
-var sumNumberSpiralDiagonalsIterative = function (n, acc) {
-  acc = typeof acc === 'undefined' ? 0 : acc;
-
-  // can't have a spiral of an even number
-  if (n % 2 === 0) {
-    return -1;
-  }
-  if (n === 1) {
-    return acc + 1;
-  }
-  var sumOfCorners = 4*n*n - 6*(n - 1);
-  return sumNumberSpiralDiagonalsIterative(n - 2, acc + sumOfCorners);
-};
-
-var sumNumberSpiralDiagonals = function (n) {
-  if (n % 2 === 0) {
-    return -1;
-  }
-  var sum = 1;
-  while (n > 1) {
-    sum += 4*n*n - 6*(n - 1);
-    n -= 2;
-  }
-  return sum;
-};
-
-module.exports = sumNumberSpiralDiagonals;
+module.exports = spiralSum;
