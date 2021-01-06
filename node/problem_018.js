@@ -33,6 +33,16 @@
  * solved by brute force, and requires a clever method! ;o)
  */
 
+const buildPyramid = (values) => {
+  let pyramid = [];
+  let row = 1;
+  while (values.length) {
+    pyramid.push(values.splice(0, row));
+    row++;
+  }
+  return pyramid;
+};
+
 const getParents = (row, col, pyramid) => {
   const parents = [];
   const prevRow = pyramid[row - 1];
@@ -48,9 +58,10 @@ const getParents = (row, col, pyramid) => {
     rParent !== undefined && parents.push(rParent);
   }
   return parents;
-}
+};
 
-const maxPath = (pyramid) => {
+const maxPath = (values) => {
+  const pyramid = buildPyramid(values);
   for (let row = 0; row < pyramid.length; row++) {
     for (let col = 0; col < pyramid[row].length; col++) {
       const parents = getParents(row, col, pyramid);
@@ -60,6 +71,6 @@ const maxPath = (pyramid) => {
 
   // return the largest value in the bottom row
   return Math.max(...pyramid.pop());
-}
+};
 
 module.exports = maxPath;

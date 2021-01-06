@@ -17,7 +17,6 @@
  * fifth powers of their digits.
  */
 
-var reload = require('mod-reload');
 var arithmetic = require('./lib/arithmetic');
 
 function numDigits(n) {
@@ -55,10 +54,7 @@ function digitPowers(exp) {
 
 
 
-module.exports = {
-  digitPowers: digitPowers,
-  reload: reload,
-};
+module.exports = digitPowers;
 
 
 

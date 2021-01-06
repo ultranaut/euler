@@ -1,5 +1,3 @@
-/* jshint node: true  */
-
 /**
  * By starting at the top of the triangle below and moving to adjacent
  * numbers on the row below, the maximum total from top to bottom is 23.
@@ -23,10 +21,10 @@
  */
 
 // same problem as #18, just a larger dataset
-var Pyramid = require('./lib/path-pyramid');
-var data = require('./data/problem_067');
+const maxPath = require('./problem_018');
+const data = require('./data/problem_067');
 
 module.exports = {
-  Pyramid: Pyramid,
-  data: data
+  maxPath,
+  data,
 };
