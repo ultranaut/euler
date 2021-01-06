@@ -32,19 +32,6 @@ describe('Problem 15', function () {
   });
 });
 
-describe('Problem 18', function () {
-  describe('maximum path sum', function () {
-    it('should equal 1074', function () {
-      var p18 = require('../problem_018');
-      var Pyramid = p18.Pyramid;
-      var values = p18.data.nodeValues;
-      var myPyramid = new Pyramid(values);
-
-      expect(myPyramid.maxPath()).to.equal(1074);
-    });
-  });
-});
-
 describe('Problem 19', function () {
   describe('count sundays', function () {
     it('should equal 171', function () {
