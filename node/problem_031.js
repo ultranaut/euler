@@ -16,38 +16,24 @@
  */
 
 /*
- * I don't know why, but this one's really satisfying to figure out,
- * and once you do, it's really simple to code. It'd be a good
- * to add some memoization though; for the problem as given, there's
- * definitely a little lag when it runs. It'd also be interesting to
- * break it down to where it could run in a loop, but I'm too tired
- * to handle that right now.
+ * I don't know why, but this one was really satisfying to figure out,
+ * and once you do, it's really simple to code. (Actually, I initially
+ * figured it out using a recursive method, which could be pretty slow.
+ * Subsequently I saw an explanation of doing it iteratively, so I 
+ * didn't so much figure that out on my own.)
  *
  */
 
 const coinCombinations = (target, coins) => {
-  // no coins left to use, or negative target
-  if (coins.length === 0 || target < 0) {
-    return 0;
-  }
-  // target hit, add one to the count
-  if (target === 0) {
-    return 1;
-  }
+  const totals = new Array(target + 1).fill(0);
+  totals[0] = 1;
 
-  /*
-   * if we only have one coin to use, there's no need to check it
-   * recursively. I thought at first this was essentially a micro-
-   * optimization, but it actually speeds things up substantially
-   */
-  if (coins.length === 1) {
-    return target % coins[0] === 0 ? 1 : 0;
-  }
-
-  return (
-    coinCombinations(target - coins[0], coins) +
-    coinCombinations(target, coins.slice(1))
-  );
+  coins.forEach((coin) => {
+    for (let amount = coin; amount <= target; amount++) {
+      totals[amount] += totals[amount - coin];
+    }
+  })
+  return totals[target];
 };
 
 module.exports = coinCombinations;
