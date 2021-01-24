@@ -22,59 +22,37 @@
  *
  */
 
-// brute force, takes about 30 minutes, bad
-
-const permutate = (string) => {
-  const results = [];
-  let [char, chars] = [string.slice(-1), string.slice(0, -1)];
-
-  // push first char onto results
-  results.push(char);
-
-  // handle each new character
-  while (chars.length) {
-    // place null marker to mark end of previous results
-    results.push(null);
-
-    // pull next char off of string
-    [char, chars] = [chars.slice(-1), chars.slice(0, -1)];
-
-    // add new char into each result set
-    let result = results.shift();
-    while (result !== null) {
-      for (let i = 0; i <= result.length; i++) {
-        results.push(result.slice(0, i) + char + result.slice(i));
-      }
-
-      result = results.shift();
-    }
-  }
-  return results.sort();
-};
-
-const buildDigit = () => {
-  const pandigitals = permutate('0123456789');
+const buildDigits = () => {
   const divisors = [2, 3, 5, 7, 11, 13, 17];
+  const results = [];
+  const partials = [['', '0123456789']];
 
-  let passes = pandigitals
-    .filter((digit) => {
-      for (let i = 4; i <= 10; i++) {
-        const divisor = divisors[i - 4];
-        const dividend = digit.slice(i - 3, i);
-        if (dividend % divisor !== 0) {
-          return false;
+  while (partials.length) {
+    const [acc, chars] = partials.shift();
+    for (let i = 0; i < chars.length; i++) {
+      let builtup = acc + chars.slice(i, i + 1);
+      let reduced = chars.slice(0, i) + chars.slice(i + 1);
+
+      let width = builtup.length;
+      if (width > 3) {
+        const dividend = parseInt(builtup.slice(width - 3));
+        const divisor = divisors[width - 4];
+        if (dividend % divisor === 0) {
+          if (reduced.length > 0) {
+            partials.push([builtup, reduced]);
+          } else {
+            results.push(parseInt(builtup));
+          }
         }
       }
-      return true;
-    })
-    .map((digit) => parseInt(digit));
 
-  let sum = passes.length ? passes.reduce((acc, digit) => acc + digit) : 0;
-
-  return {passes, sum};
+      else {
+        partials.push([builtup, reduced]);
+      }
+    }
+  }
+  const sum = results.reduce((acc, digit) => acc + digit);
+  return {sum, results};
 };
 
-const pandigits = buildDigit('123');
-console.log(pandigits);
-
-module.exports = buildDigit;
+module.exports = buildDigits;
