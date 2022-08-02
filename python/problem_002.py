@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Problem 2: Even Fibonacci numbers
 
@@ -11,12 +11,18 @@ will be:
 By considering the terms in the Fibonacci sequence whose values do
 not exceed four million, find the sum of the even-valued terms.
 """
-def sum_even_fibonaccis(limit=4000000):
-    low, high, total = 1, 1, 0
-    while True:
-        low, high = high, high + low
-        if high > limit:
-            break
-        if high % 2 == 0:
-            total += high
-    return total
+
+
+def sum_even_fibonaccis(limit):
+    low, high, result = 0, 1, 0
+    while high <= limit:
+        low, high = high, low + high
+        if low % 2 == 0:
+            result += low
+
+    return result
+
+
+if __name__ == "__main__":
+    result = sum_even_fibonaccis(4_000_000)
+    print(result)

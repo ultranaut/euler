@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Problem 16: Power digit sum
 
@@ -9,14 +9,15 @@ What is the sum of the digits of the number 2^1000?
 
 # It's trivial in Python...
 def easy_sum(base, exponent):
-    num = base**exponent
+    num = base ** exponent
     _sum = 0
 
     while num > 0:
         _sum += num % 10
-        num /= 10
+        num = num // 10
 
     return _sum
+
 
 # ...but let's pretend we don't have support for large numbers
 def multiply(multiplier, base):
@@ -24,10 +25,11 @@ def multiply(multiplier, base):
     for idx, val in enumerate(base):
         product = multiplier * val + carry
         base[idx] = product % 10
-        carry = product / 10
+        carry = product // 10
     if carry != 0:
         base.append(carry)
     return base
+
 
 def power_sum(base, exponent):
     ints = [base]
@@ -36,3 +38,7 @@ def power_sum(base, exponent):
         exponent -= 1
     return sum(ints)
 
+
+if __name__ == "__main__":
+    result = power_sum(2, 1_000)
+    print(result)
